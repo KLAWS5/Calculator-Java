@@ -1,0 +1,104 @@
+import java.util.Scanner;
+
+class Calculator{
+    int add(int a, int b){
+        return a +b;
+    }
+    double add(double a, double b){
+        return (a +b);
+    }
+    int add(int a, int b, int c){
+        return a +b +c;
+    }
+    int subtract(int a, int b){
+        return a -b;
+    }
+    double multiply(double a, double b){
+        return a *b;
+    }
+    double divide(int a, int b){
+        if (b == 0)
+            System.out.println("Cannot divide by zero");
+        return (double) a /b;
+    }
+}
+
+class UseFace {
+    Scanner sc = new Scanner(System.in);
+    Calculator c = new Calculator();
+
+    void perfAdd(){
+        System.out.print("Enter number of values (1 for Decimal, For int use 2 or 3 according to no. of values ): ");
+        int n = sc.nextInt();
+
+        if (n==1){
+            System.out.print("Enter two decimal numbers: ");
+            double a =sc.nextDouble();
+            double b =sc.nextDouble();
+            System.out.println("Result: " + c.add(a, b));
+        }
+        if (n==2){
+            System.out.print("Enter two integers: ");
+            int a =sc.nextInt();
+            int b =sc.nextInt();
+            System.out.println("Result: " + c.add(a, b));
+        }else if (n==3){
+            System.out.print("Enter three integers: ");
+            int a =sc.nextInt();
+            int b =sc.nextInt();
+            int d =sc.nextInt();
+            System.out.println("Result: "+c.add(a, b, d));
+        }else{
+            System.out.println("Invalid number of inputs.");
+        }
+    }
+
+    void perfSubt(){
+        System.out.print("Enter two integers: ");
+        int a =sc.nextInt();
+        int b =sc.nextInt();
+        System.out.println("Result: "+c.subtract(a, b));
+    }
+
+    void perfMultiply(){
+        System.out.print("Enter two decimal numbers: ");
+        double a =sc.nextDouble();
+        double b =sc.nextDouble();
+        System.out.println("Result: "+c.multiply(a, b));
+    }
+
+    void perfDiv() {
+        System.out.print("Enter two integers: ");
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        System.out.println("Result: " + c.divide(a, b));
+
+    }
+
+    void mainMenu(){
+        int choice;
+        do{
+            System.out.println("\n1. Add");
+            System.out.println("2. Subtract");
+            System.out.println("3. Multiply");
+            System.out.println("4. Divide");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1 -> perfAdd();
+                case 2 -> perfSubt();
+                case 3 -> perfMultiply();
+                case 4 -> perfDiv();
+                case 5 -> System.out.println("Goodbye!");
+                default -> System.out.println("Invalid choice.");
+            }
+        } while (choice != 5);
+        sc.close();
+    }
+    public static void main(String[] args){
+        new UseFace().mainMenu();
+    }
+}
+
